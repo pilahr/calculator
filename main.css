@@ -4,4 +4,29 @@
   box-sizing: border-box;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: black;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.container {
+  width: auto;
+  height: auto;
+  padding: 50px;
+}
+
+.display-screen {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.display-screen__text {
+  font-size: 50px;
 }/*# sourceMappingURL=main.css.map */
