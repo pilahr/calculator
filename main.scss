@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: black;
+  background-color: white;
 }
 
 section {
@@ -20,7 +20,9 @@ section {
 .container {
   width: auto;
   height: auto;
-  padding: 50px;
+  padding: 20px;
+  padding-top: 50px;
+  background-color: black;
 }
 
 .display-screen {
@@ -30,5 +32,42 @@ section {
 
   &__text {
     font-size: 50px;
+  }
+}
+
+.button {
+  &__special {
+    width: 50px;
+    height: 50px;
+    margin: 2px;
+    border-radius: 50%;
+    color: black;
+    font-size: 24px;
+    border: none;
+  }
+
+  &__number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $button-color;
+    border: none;
+    font-size: 24px;
+  }
+
+  &__operator {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $right-operators-color;
+    border: none;
+    font-size: 24px;
+  }
+
+  #zero {
+    width: 100px;
+    border-radius: 50px;
+    text-align: left;
+    padding: 15px;
   }
 }
