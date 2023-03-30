@@ -21,8 +21,12 @@ section {
   width: auto;
   height: auto;
   padding: 20px;
-  padding-top: 50px;
+  padding-top: 100px;
+  padding-bottom: 30px;
   background-color: black;
+  margin-left: 100px;
+  margin-right: 100px;
+  border-radius: 20px;
 }
 
 .display-screen {
@@ -36,10 +40,14 @@ section {
 }
 
 .button {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+
   &__special {
     width: 50px;
     height: 50px;
-    margin: 2px;
+    // margin: 2px;
     border-radius: 50%;
     color: black;
     font-size: 24px;
@@ -63,11 +71,40 @@ section {
     border: none;
     font-size: 24px;
   }
+}
 
-  #zero {
-    width: 100px;
-    border-radius: 50px;
-    text-align: left;
-    padding: 15px;
+.row-5 {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-gap: 5px;
+  margin-top: 5px;
+
+  &__number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $button-color;
+    border: none;
+    font-size: 24px;
+
+    &--zero {
+      width: 100px;
+      height: 50px;
+      border-radius: 50px;
+      text-align: left;
+      padding: 15px;
+      background-color: $button-color;
+      border: none;
+      font-size: 24px;
+    }
+  }
+
+  &__operator {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $right-operators-color;
+    border: none;
+    font-size: 24px;
   }
 }
