@@ -13,10 +13,11 @@ operatorButtons[4].classList.add("equal"); // ---- VARIABLES ----
 
 var number = "";
 var operator = "";
-var finalResult = 0; // ---- FUNCTIONS ----
+var finalResult = 0;
+var haveDot = false; // ---- FUNCTIONS ----
 
 var handleNumberClick = function handleNumberClick(event) {
-  var number = parseInt(event.target.innerText);
+  number += event.target.innerText;
   console.log(number);
   updateDisplay(number);
 };
@@ -37,7 +38,24 @@ var updateDisplay2 = function updateDisplay2(operator) {
 
 var handleClearClick = function handleClearClick(event) {
   updateDisplay("0");
-}; // const calculate = (number) => {
+};
+
+var handlePercentageClick = function handlePercentageClick(event) {
+  var decimalNumber = function decimalNumber(number) {
+    parseFloat(number / 100);
+    return decimalNumber;
+  };
+}; // const appendNumber = (number) => {
+//   if (number.length < 10) {
+//     number = event.target.innerText
+//   } else {
+//     number += event.target.innerText
+//   }
+//   // if (number === "." && display.includes("."))
+//   //   display = display.toString() + number.toString();
+//   // return parseInt(display.innerText);
+// };
+// const calculate = (number) => {
 //   number = parseFloat(display.text());
 //   switch (operator) {
 //     case "addition":
@@ -67,4 +85,6 @@ operatorButtons.forEach(function (button) {
   button.addEventListener("click", handleOperatorClick);
 }); // ---- CLEAR BUTTON CLICKED
 
-clearButton.addEventListener("click", handleClearClick);
+clearButton.addEventListener("click", handleClearClick); // ---- PERCENTAGE BUTTON CLICKED
+
+percentageButton.addEventListener("click", handlePercentageClick);

@@ -14,10 +14,12 @@ operatorButtons[4].classList.add("equal");
 let number = "";
 let operator = "";
 let finalResult = 0;
+let haveDot = false;
 
 // ---- FUNCTIONS ----
 const handleNumberClick = (event) => {
-  const number = parseInt(event.target.innerText);
+  number += event.target.innerText;
+
   console.log(number);
   updateDisplay(number);
 };
@@ -39,6 +41,24 @@ const updateDisplay2 = (operator) => {
 const handleClearClick = (event) => {
   updateDisplay("0");
 };
+
+const handlePercentageClick = (event) => {
+  const decimalNumber = (number) => {
+    parseFloat(number / 100);
+    return decimalNumber;
+  };
+};
+
+// const appendNumber = (number) => {
+//   if (number.length < 10) {
+//     number = event.target.innerText
+//   } else {
+//     number += event.target.innerText
+//   }
+//   // if (number === "." && display.includes("."))
+//   //   display = display.toString() + number.toString();
+//   // return parseInt(display.innerText);
+// };
 
 // const calculate = (number) => {
 //   number = parseFloat(display.text());
@@ -73,3 +93,6 @@ operatorButtons.forEach((button) => {
 
 // ---- CLEAR BUTTON CLICKED
 clearButton.addEventListener("click", handleClearClick);
+
+// ---- PERCENTAGE BUTTON CLICKED
+percentageButton.addEventListener("click", handlePercentageClick);
