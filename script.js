@@ -5,9 +5,7 @@ const clearButton = document.querySelector("#clear");
 const signButton = document.querySelector("#sign");
 const percentageButton = document.querySelector("#percentage");
 const equalButton = document.querySelector("#equal");
-const display = document.querySelector(".display-screen__text");
-
-console.log(display);
+const display = document.querySelector(".display-screen__result");
 
 //ADD CLASS TO EQUAL BUTTON
 operatorButtons[4].classList.add("equal");
@@ -15,6 +13,7 @@ operatorButtons[4].classList.add("equal");
 // ---- VARIABLES ----
 let number = "";
 let operator = "";
+let finalResult = 0;
 
 // ---- FUNCTIONS ----
 const handleNumberClick = (event) => {
@@ -26,19 +25,43 @@ const handleNumberClick = (event) => {
 const handleOperatorClick = (event) => {
   const operator = event.target.innerText;
   console.log(operator);
+  updateDisplay2(operator);
 };
 
-// const handlePercentageClick = (event) => {
-//   const number = parseFloat(number / number) * 100;
-//   console.log(number);
-// };
-
-// ---- UPDATE DISPLAY FUNCTION ----
 const updateDisplay = (number) => {
   display.innerText = number;
 };
 
+const updateDisplay2 = (operator) => {
+  display.innerText = operator;
+};
+
+const handleClearClick = (event) => {
+  updateDisplay("0");
+};
+
+// const calculate = (number) => {
+//   number = parseFloat(display.text());
+//   switch (operator) {
+//     case "addition":
+//       finalResult += number;
+//       break;
+//     case "subtraction":
+//       finalResult -= number;
+//       break;
+//     case "multiplication":
+//       finalResult *= number;
+//       break;
+//     case "division":
+//       finalResult /= number;
+//       break;
+//     default:
+//       break;
+//   }
+// };
+
 // ---- NUMBER BUTTON CLICKED ----
+
 numberButtons.forEach((button) => {
   button.addEventListener("click", handleNumberClick);
 });
@@ -48,5 +71,5 @@ operatorButtons.forEach((button) => {
   button.addEventListener("click", handleOperatorClick);
 });
 
-// ---- PERCENTAGE BUTTON CLICKED ---
-// percentageButton.addEventListener("click", handlePercentageClick);
+// ---- CLEAR BUTTON CLICKED
+clearButton.addEventListener("click", handleClearClick);
