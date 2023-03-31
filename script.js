@@ -14,7 +14,6 @@ operatorButtons[4].classList.add("equal");
 let number = "";
 let operator = "";
 let finalResult = 0;
-let haveDot = false;
 
 // ---- FUNCTIONS ----
 const handleNumberClick = (event) => {
@@ -40,6 +39,7 @@ const updateDisplay2 = (operator) => {
 
 const handleClearClick = (event) => {
   updateDisplay("0");
+  number = "";
 };
 
 const handlePercentageClick = (event) => {
@@ -48,17 +48,6 @@ const handlePercentageClick = (event) => {
     return decimalNumber;
   };
 };
-
-// const appendNumber = (number) => {
-//   if (number.length < 10) {
-//     number = event.target.innerText
-//   } else {
-//     number += event.target.innerText
-//   }
-//   // if (number === "." && display.includes("."))
-//   //   display = display.toString() + number.toString();
-//   // return parseInt(display.innerText);
-// };
 
 // const calculate = (number) => {
 //   number = parseFloat(display.text());

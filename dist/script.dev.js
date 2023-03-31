@@ -13,8 +13,7 @@ operatorButtons[4].classList.add("equal"); // ---- VARIABLES ----
 
 var number = "";
 var operator = "";
-var finalResult = 0;
-var haveDot = false; // ---- FUNCTIONS ----
+var finalResult = 0; // ---- FUNCTIONS ----
 
 var handleNumberClick = function handleNumberClick(event) {
   number += event.target.innerText;
@@ -38,6 +37,7 @@ var updateDisplay2 = function updateDisplay2(operator) {
 
 var handleClearClick = function handleClearClick(event) {
   updateDisplay("0");
+  number = "";
 };
 
 var handlePercentageClick = function handlePercentageClick(event) {
@@ -45,17 +45,7 @@ var handlePercentageClick = function handlePercentageClick(event) {
     parseFloat(number / 100);
     return decimalNumber;
   };
-}; // const appendNumber = (number) => {
-//   if (number.length < 10) {
-//     number = event.target.innerText
-//   } else {
-//     number += event.target.innerText
-//   }
-//   // if (number === "." && display.includes("."))
-//   //   display = display.toString() + number.toString();
-//   // return parseInt(display.innerText);
-// };
-// const calculate = (number) => {
+}; // const calculate = (number) => {
 //   number = parseFloat(display.text());
 //   switch (operator) {
 //     case "addition":
