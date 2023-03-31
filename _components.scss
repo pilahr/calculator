@@ -1,0 +1,88 @@
+@use "./variables" as *;
+
+.container {
+  width: auto;
+  height: auto;
+  padding: 20px;
+  padding-top: 100px;
+  padding-bottom: 30px;
+  background-color: black;
+  margin-left: 100px;
+  margin-right: 100px;
+  border-radius: 20px;
+}
+
+.display-screen {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+
+  &__text {
+    font-size: 50px;
+  }
+}
+
+.button {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+
+  &__special {
+    width: 50px;
+    height: 50px;
+    // margin: 2px;
+    border-radius: 50%;
+    color: black;
+    font-size: 24px;
+    border: none;
+  }
+
+  &__number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $button-color;
+    border: none;
+    font-size: 24px;
+
+    &--zero {
+      // width: 100px;
+      height: 50px;
+      border-radius: 50px;
+      text-align: left;
+      padding: 15px;
+      background-color: $button-color;
+      border: none;
+      font-size: 24px;
+      grid-column: 1 / span 2;
+    }
+  }
+
+  &__operator {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $right-operators-color;
+    border: none;
+    font-size: 24px;
+  }
+}
+
+.extra-buttons-container {
+  display: none;
+}
+.extra-buttons {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 5px;
+  margin-right: 5px;
+
+  button {
+    width: 55px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: $button-color;
+    border: none;
+    font-size: 14px;
+  }
+}

@@ -1,4 +1,5 @@
 @use "./variables" as *;
+@use "./components" as *;
 
 * {
   padding: 0;
@@ -9,7 +10,7 @@
 }
 
 body {
-  background-color: black;
+  background-color: white;
 }
 
 section {
@@ -17,18 +18,27 @@ section {
   justify-content: center;
   margin-top: 50px;
 }
-.container {
-  width: auto;
-  height: auto;
-  padding: 50px;
-}
 
-.display-screen {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
+@media screen and (min-width: 768px) {
+  .extra-buttons-container {
+    display: unset;
+  }
+  .container {
+    display: grid;
+    grid-template-areas:
+      "screen screen"
+      "extra-pad keypad";
 
-  &__text {
-    font-size: 50px;
+    .display-screen {
+      grid-area: screen;
+    }
+
+    .extra-buttons-container {
+      grid-area: extra-pad;
+    }
+
+    .button {
+      grid-area: keypad;
+    }
   }
 }
