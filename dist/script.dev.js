@@ -1,19 +1,20 @@
 "use strict";
 
-// ---- GET THE BUTTONS----
+// ----- GET THE BUTTONS----- //
 var numberButtons = document.querySelectorAll(".button__number");
 var operatorButtons = document.querySelectorAll(".button__operator");
 var clearButton = document.querySelector("#clear");
 var signButton = document.querySelector("#sign");
 var percentageButton = document.querySelector("#percentage");
 var equalButton = document.querySelector("#equal");
-var display = document.querySelector(".display-screen__result"); //ADD CLASS TO EQUAL BUTTON
-
-operatorButtons[4].classList.add("equal"); // ---- VARIABLES ----
+var display = document.querySelector(".display-screen__result");
+var zeroButton = document.querySelector("#zero");
+var decimalButton = document.querySelector("#decimal"); // ----- VARIABLES ----- //
 
 var number = "";
 var operator = "";
-var finalResult = 0; // ---- FUNCTIONS ----
+var memoryNumber = 0;
+var calculatedNumber = 0; // ----- FUNCTIONS ----- //
 
 var handleNumberClick = function handleNumberClick(event) {
   number += event.target.innerText;
@@ -23,58 +24,76 @@ var handleNumberClick = function handleNumberClick(event) {
 
 var handleOperatorClick = function handleOperatorClick(event) {
   var operator = event.target.innerText;
+  memoryNumber = parseFloat(number);
+  number = "";
+  console.log(memoryNumber); //to store the memory number for calculation
+
   console.log(operator);
-  updateDisplay2(operator);
+  updateDisplay(operator);
 };
 
 var updateDisplay = function updateDisplay(number) {
   display.innerText = number;
 };
 
-var updateDisplay2 = function updateDisplay2(operator) {
-  display.innerText = operator;
-};
-
 var handleClearClick = function handleClearClick(event) {
-  updateDisplay("0");
   number = "";
+  updateDisplay("0");
 };
 
 var handlePercentageClick = function handlePercentageClick(event) {
-  var decimalNumber = function decimalNumber(number) {
-    parseFloat(number / 100);
-    return decimalNumber;
-  };
-}; // const calculate = (number) => {
-//   number = parseFloat(display.text());
-//   switch (operator) {
-//     case "addition":
-//       finalResult += number;
-//       break;
-//     case "subtraction":
-//       finalResult -= number;
-//       break;
-//     case "multiplication":
-//       finalResult *= number;
-//       break;
-//     case "division":
-//       finalResult /= number;
-//       break;
-//     default:
-//       break;
+  number = parseFloat(number) / 100;
+  updateDisplay(number);
+};
+
+var handleZeroButtonClick = function handleZeroButtonClick(event) {
+  number += event.target.innerText;
+  console.log(parseInt(number));
+  updateDisplay(number);
+}; // const handleEqualButtonClick = (event) => {
+//   if (number === "") {
+//     number = memoryNumber;
+//   } else {
+//     number = previousNumber;
 //   }
+//   if (memoryNumber && number && operator) {
+//     calculation(memoryNumber, number);
+//   } else {
+//     return number;
+//   }
+//   updateDisplay(calculatedNumber);
 // };
-// ---- NUMBER BUTTON CLICKED ----
+// switch (operator) {
+//   case "addition":
+//     calculatedNumber = memoryNumber + parseFloat(number);
+//     break;
+//   case "subtraction":
+//     calculatedNumber = memoryNumber - parseFloat(number);
+//     break;
+//   case "multiplication":
+//     calculatedNumber = memoryNumber * parseFloat(number);
+//     break;
+//   case "division":
+//     calculatedNumber = memoryNumber / parseFloat(number);
+//     break;
+//   default:
+//     break;
+// }
+// console.log(calculatedNumber);
+// ----- NUMBER BUTTON CLICKED ----- //
 
 
 numberButtons.forEach(function (button) {
   button.addEventListener("click", handleNumberClick);
-}); // ---- OPERATOR BUTTON CLICKED ----
+}); // ----- OPERATOR BUTTON CLICKED ----- //
 
 operatorButtons.forEach(function (button) {
   button.addEventListener("click", handleOperatorClick);
-}); // ---- CLEAR BUTTON CLICKED
+}); // ----- CLEAR BUTTON CLICKED ----- //
 
-clearButton.addEventListener("click", handleClearClick); // ---- PERCENTAGE BUTTON CLICKED
+clearButton.addEventListener("click", handleClearClick); // ----- PERCENTAGE BUTTON CLICKED -----//
 
-percentageButton.addEventListener("click", handlePercentageClick);
+percentageButton.addEventListener("click", handlePercentageClick); // ===== ZERO BUTTON CLICKED -----//
+
+zeroButton.addEventListener("click", handleZeroButtonClick); // ----- EQUAL BUTTON CLICKED -----//
+// equalButton.addEventListener("click", handleEqualButtonClick);
