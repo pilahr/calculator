@@ -19,7 +19,7 @@ let finalResult = 0;
 const handleNumberClick = (event) => {
   number += event.target.innerText;
 
-  console.log(number);
+  console.log(parseInt(number));
   updateDisplay(number);
 };
 

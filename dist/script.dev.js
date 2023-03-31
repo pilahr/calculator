@@ -17,7 +17,7 @@ var finalResult = 0; // ---- FUNCTIONS ----
 
 var handleNumberClick = function handleNumberClick(event) {
   number += event.target.innerText;
-  console.log(number);
+  console.log(parseInt(number));
   updateDisplay(number);
 };
 
