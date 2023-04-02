@@ -14,7 +14,7 @@ var decimalButton = document.querySelector("#decimal"); // ----- VARIABLES -----
 var number = "";
 var operator = "";
 var memoryNumber = 0;
-var calculatedNumber = 0; // ----- FUNCTIONS ----- //
+var result = 0; // ----- FUNCTIONS ----- //
 
 var handleNumberClick = function handleNumberClick(event) {
   number += event.target.innerText;
@@ -24,12 +24,34 @@ var handleNumberClick = function handleNumberClick(event) {
 
 var handleOperatorClick = function handleOperatorClick(event) {
   var operator = event.target.innerText;
-  memoryNumber = parseFloat(number);
-  number = "";
-  console.log(memoryNumber); //to store the memory number for calculation
-
   console.log(operator);
-  updateDisplay(operator);
+  var memoryNumber = "";
+
+  if (!operator) {
+    return;
+  }
+
+  var result;
+
+  switch (operator) {
+    case "+":
+      result = memoryNumber + parseFloat(number);
+      break;
+
+    case "-":
+      result = memoryNumber - parseFloat(number);
+      break;
+
+    case "x":
+      result = memoryNumber * parseFloat(number);
+      break;
+
+    case "÷":
+      result = memoryNumber / parseFloat(number);
+      break;
+  }
+
+  console.log(result);
 };
 
 var updateDisplay = function updateDisplay(number) {
@@ -38,11 +60,11 @@ var updateDisplay = function updateDisplay(number) {
 
 var handleClearClick = function handleClearClick(event) {
   number = "";
-  updateDisplay("0");
+  updateDisplay(0);
 };
 
 var handlePercentageClick = function handlePercentageClick(event) {
-  number = parseFloat(number) / 100;
+  number = Number(display.innerText) / 100;
   updateDisplay(number);
 };
 
@@ -50,37 +72,9 @@ var handleZeroButtonClick = function handleZeroButtonClick(event) {
   number += event.target.innerText;
   console.log(parseInt(number));
   updateDisplay(number);
-}; // const handleEqualButtonClick = (event) => {
-//   if (number === "") {
-//     number = memoryNumber;
-//   } else {
-//     number = previousNumber;
-//   }
-//   if (memoryNumber && number && operator) {
-//     calculation(memoryNumber, number);
-//   } else {
-//     return number;
-//   }
-//   updateDisplay(calculatedNumber);
-// };
-// switch (operator) {
-//   case "addition":
-//     calculatedNumber = memoryNumber + parseFloat(number);
-//     break;
-//   case "subtraction":
-//     calculatedNumber = memoryNumber - parseFloat(number);
-//     break;
-//   case "multiplication":
-//     calculatedNumber = memoryNumber * parseFloat(number);
-//     break;
-//   case "division":
-//     calculatedNumber = memoryNumber / parseFloat(number);
-//     break;
-//   default:
-//     break;
-// }
-// console.log(calculatedNumber);
-// ----- NUMBER BUTTON CLICKED ----- //
+};
+
+var handleEqualButtonClick = function handleEqualButtonClick(event) {}; // ----- NUMBER BUTTON CLICKED ----- //
 
 
 numberButtons.forEach(function (button) {
@@ -93,7 +87,8 @@ operatorButtons.forEach(function (button) {
 
 clearButton.addEventListener("click", handleClearClick); // ----- PERCENTAGE BUTTON CLICKED -----//
 
-percentageButton.addEventListener("click", handlePercentageClick); // ===== ZERO BUTTON CLICKED -----//
+percentageButton.addEventListener("click", handlePercentageClick); // ----- ZERO BUTTON CLICKED -----//
 
-zeroButton.addEventListener("click", handleZeroButtonClick); // ----- EQUAL BUTTON CLICKED -----//
-// equalButton.addEventListener("click", handleEqualButtonClick);
+zeroButton.addEventListener("click", handleZeroButtonClick); // -----EQUAL BUTTON CLICKED -----//
+
+equalButton.addEventListener("click", handleEqualButtonClick);
