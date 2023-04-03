@@ -19,7 +19,7 @@
 
   &__result {
     font-size: 50px;
-    height: 100px;
+    height: 70px;
   }
 }
 
@@ -31,11 +31,15 @@
   &__special {
     width: 50px;
     height: 50px;
-    // margin: 2px;
     border-radius: 50%;
     color: black;
     font-size: 24px;
     border: none;
+    background-color: $top-operators-color;
+  }
+
+  &__special:focus {
+    background-color: white;
   }
 
   &__equal {
@@ -45,6 +49,11 @@
     background-color: $right-operators-color;
     border: none;
     font-size: 24px;
+  }
+
+  &__equal:focus {
+    background-color: white;
+    color: $right-operators-color;
   }
 
   &__number {
@@ -68,6 +77,10 @@
     }
   }
 
+  &__number:focus {
+    background-color: $number-button-onfocus;
+  }
+
   &__operator {
     width: 50px;
     height: 50px;
@@ -75,6 +88,11 @@
     background-color: $right-operators-color;
     border: none;
     font-size: 24px;
+  }
+
+  &__operator:focus {
+    background-color: white;
+    color: $right-operators-color;
   }
 }
 
@@ -94,5 +112,9 @@
     background-color: $button-color;
     border: none;
     font-size: 14px;
+  }
+
+  button:focus {
+    background-color: $number-button-onfocus;
   }
 }

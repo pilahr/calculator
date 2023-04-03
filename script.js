@@ -18,7 +18,7 @@ let result = "";
 
 // ----- FUNCTIONS ----- //
 const updateDisplay = () => {
-  display.innerText = `${firstNum} ${operator} ${secondNum} ${result}`;
+  display.innerText = `${firstNum} ${operator} ${secondNum}`;
 };
 
 const handleNumberClick = (event) => {
@@ -32,7 +32,6 @@ const handleNumberClick = (event) => {
 
 const handleOperatorClick = (event) => {
   operator = event.target.innerText;
-  console.log(operator);
 };
 
 const handleClearClick = (event) => {
@@ -76,6 +75,7 @@ const handleEqualButtonClick = (event) => {
       console.log(result);
       break;
   }
+  display.innerText = result;
 };
 
 // ----- NUMBER BUTTON CLICKED ----- //

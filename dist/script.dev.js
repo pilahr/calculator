@@ -18,7 +18,7 @@ var operator = "";
 var result = ""; // ----- FUNCTIONS ----- //
 
 var updateDisplay = function updateDisplay() {
-  display.innerText = "".concat(firstNum, " ").concat(operator, " ").concat(secondNum, " ").concat(result);
+  display.innerText = "".concat(firstNum, " ").concat(operator, " ").concat(secondNum);
 };
 
 var handleNumberClick = function handleNumberClick(event) {
@@ -33,7 +33,6 @@ var handleNumberClick = function handleNumberClick(event) {
 
 var handleOperatorClick = function handleOperatorClick(event) {
   operator = event.target.innerText;
-  console.log(operator);
 };
 
 var handleClearClick = function handleClearClick(event) {
@@ -82,6 +81,8 @@ var handleEqualButtonClick = function handleEqualButtonClick(event) {
       console.log(result);
       break;
   }
+
+  display.innerText = result;
 }; // ----- NUMBER BUTTON CLICKED ----- //
 
 
