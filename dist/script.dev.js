@@ -6,81 +6,98 @@ var operatorButtons = document.querySelectorAll(".button__operator");
 var clearButton = document.querySelector("#clear");
 var signButton = document.querySelector("#sign");
 var percentageButton = document.querySelector("#percentage");
-var equalButton = document.querySelector("#equal");
+var equalButton = document.querySelector(".button__equal");
 var display = document.querySelector(".display-screen__result");
-var zeroButton = document.querySelector("#zero");
-var decimalButton = document.querySelector("#decimal"); // ----- VARIABLES ----- //
+var zeroButton = document.querySelector("#zero"); // const decimalButton = document.querySelector("#decimal");
+// ----- VARIABLES ----- //
 
-var number = "";
+var firstNum = "";
+var secondNum = "";
 var operator = "";
-var memoryNumber = 0;
-var calculatedNumber = 0; // ----- FUNCTIONS ----- //
+var result = ""; // ----- FUNCTIONS ----- //
+
+var updateDisplay = function updateDisplay() {
+  display.innerText = "".concat(firstNum, " ").concat(operator, " ").concat(secondNum, " ").concat(result);
+};
 
 var handleNumberClick = function handleNumberClick(event) {
-  number += event.target.innerText;
-  console.log(parseInt(number));
-  updateDisplay(number);
+  if (operator === "") {
+    firstNum += event.target.innerText;
+    console.log(firstNum);
+  } else {
+    secondNum += event.target.innerText;
+  }
+
+  updateDisplay();
 };
 
 var handleOperatorClick = function handleOperatorClick(event) {
-  var operator = event.target.innerText;
-  memoryNumber = parseFloat(number);
-  number = "";
-  console.log(memoryNumber); //to store the memory number for calculation
-
-  console.log(operator);
-  updateDisplay(operator);
-};
-
-var updateDisplay = function updateDisplay(number) {
-  display.innerText = number;
+  operator = event.target.innerText;
 };
 
 var handleClearClick = function handleClearClick(event) {
-  number = "";
-  updateDisplay("0");
+  display.innerText = "0";
+  firstNum = "";
+  secondNum = "";
+  operator = "";
 };
 
 var handlePercentageClick = function handlePercentageClick(event) {
-  number = parseFloat(number) / 100;
-  updateDisplay(number);
+  result = parseFloat(display.innerText) / 100;
+  firstNum = "";
+  secondNum = "";
+  operator = "";
+  updateDisplay();
+  result = "";
 };
 
 var handleZeroButtonClick = function handleZeroButtonClick(event) {
-  number += event.target.innerText;
-  console.log(parseInt(number));
-  updateDisplay(number);
-}; // const handleEqualButtonClick = (event) => {
-//   if (number === "") {
-//     number = memoryNumber;
-//   } else {
-//     number = previousNumber;
-//   }
-//   if (memoryNumber && number && operator) {
-//     calculation(memoryNumber, number);
-//   } else {
-//     return number;
-//   }
-//   updateDisplay(calculatedNumber);
-// };
-// switch (operator) {
-//   case "addition":
-//     calculatedNumber = memoryNumber + parseFloat(number);
-//     break;
-//   case "subtraction":
-//     calculatedNumber = memoryNumber - parseFloat(number);
-//     break;
-//   case "multiplication":
-//     calculatedNumber = memoryNumber * parseFloat(number);
-//     break;
-//   case "division":
-//     calculatedNumber = memoryNumber / parseFloat(number);
-//     break;
-//   default:
-//     break;
-// }
-// console.log(calculatedNumber);
-// ----- NUMBER BUTTON CLICKED ----- //
+  if (operator === "") {
+    firstNum += event.target.innerText;
+  } else {
+    secondNum += event.target.innerText;
+  }
+
+  updateDisplay();
+};
+
+var handleEqualButtonClick = function handleEqualButtonClick(event) {
+  var result;
+
+  switch (operator) {
+    case "+":
+      result = parseFloat(firstNum) + parseFloat(secondNum);
+      console.log(result);
+      break;
+
+    case "-":
+      result = parseFloat(firstNum) - parseFloat(secondNum);
+      console.log(result);
+      break;
+
+    case "x":
+      result = parseFloat(firstNum) * parseFloat(secondNum);
+      console.log(result);
+      break;
+
+    case "÷":
+      result = parseFloat(firstNum) / parseFloat(secondNum);
+      console.log(result);
+      break;
+  }
+
+  display.innerText = result.toFixed(2);
+};
+
+var handleSignButtonClick = function handleSignButtonClick(event) {
+  if (firstNum.includes("-")) {
+    firstNum = Math.abs(firstNum);
+  } else {
+    firstNum = "-" + firstNum;
+  }
+
+  updateDisplay();
+}; // ----- NUMBER BUTTON CLICKED ----- //
 
 
 numberButtons.forEach(function (button) {
@@ -93,7 +110,10 @@ operatorButtons.forEach(function (button) {
 
 clearButton.addEventListener("click", handleClearClick); // ----- PERCENTAGE BUTTON CLICKED -----//
 
-percentageButton.addEventListener("click", handlePercentageClick); // ===== ZERO BUTTON CLICKED -----//
+percentageButton.addEventListener("click", handlePercentageClick); // ----- ZERO BUTTON CLICKED -----//
 
-zeroButton.addEventListener("click", handleZeroButtonClick); // ----- EQUAL BUTTON CLICKED -----//
-// equalButton.addEventListener("click", handleEqualButtonClick);
+zeroButton.addEventListener("click", handleZeroButtonClick); // -----EQUAL BUTTON CLICKED -----//
+
+equalButton.addEventListener("click", handleEqualButtonClick); // ----- SIGN BUTTON CLICKED -----//
+
+signButton.addEventListener("click", handleSignButtonClick);

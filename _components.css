@@ -17,6 +17,7 @@
 }
 .display-screen__result {
   font-size: 50px;
+  height: 70px;
 }
 
 .button {
@@ -31,6 +32,22 @@
   color: black;
   font-size: 24px;
   border: none;
+  background-color: #d4d4d2;
+}
+.button__special:focus {
+  background-color: white;
+}
+.button__equal {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ff9500;
+  border: none;
+  font-size: 24px;
+}
+.button__equal:focus {
+  background-color: white;
+  color: #ff9500;
 }
 .button__number {
   width: 50px;
@@ -50,6 +67,9 @@
   font-size: 24px;
   grid-column: 1/span 2;
 }
+.button__number:focus {
+  background-color: #bdc3c7;
+}
 .button__operator {
   width: 50px;
   height: 50px;
@@ -57,6 +77,10 @@
   background-color: #ff9500;
   border: none;
   font-size: 24px;
+}
+.button__operator:focus {
+  background-color: white;
+  color: #ff9500;
 }
 
 .extra-buttons-container {
@@ -76,4 +100,7 @@
   background-color: #505050;
   border: none;
   font-size: 14px;
+}
+.extra-buttons button:focus {
+  background-color: #bdc3c7;
 }
