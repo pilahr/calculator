@@ -4,74 +4,65 @@ const operatorButtons = document.querySelectorAll(".button__operator");
 const clearButton = document.querySelector("#clear");
 const signButton = document.querySelector("#sign");
 const percentageButton = document.querySelector("#percentage");
-const equalButton = document.querySelector("#equal");
+const equalButton = document.querySelector(".button__equal");
 const display = document.querySelector(".display-screen__result");
 const zeroButton = document.querySelector("#zero");
 const decimalButton = document.querySelector("#decimal");
 
 // ----- VARIABLES ----- //
-let number = "";
+let firstNum = "";
+let secondNum = "";
 let operator = "";
-let memoryNumber = 0;
 let result = 0;
 
 // ----- FUNCTIONS ----- //
+const updateDisplay = () => {
+  display.innerText = `${firstNum} ${operator} ${secondNum}`;
+};
+
 const handleNumberClick = (event) => {
-  number += event.target.innerText;
-
-  console.log(parseInt(number));
-
-  updateDisplay(number);
+  if (operator === "") {
+    firstNum += event.target.innerText;
+  } else {
+    secondNum += event.target.innerText;
+  }
+  updateDisplay();
 };
 
 const handleOperatorClick = (event) => {
-  const operator = event.target.innerText;
+  operator = event.target.innerText;
   console.log(operator);
-  let memoryNumber = "";
-
-  if (!operator) {
-    return;
-  }
-  let result;
-  switch (operator) {
-    case "+":
-      result = memoryNumber + parseFloat(number);
-      break;
-    case "-":
-      result = memoryNumber - parseFloat(number);
-      break;
-    case "x":
-      result = memoryNumber * parseFloat(number);
-      break;
-    case "÷":
-      result = memoryNumber / parseFloat(number);
-      break;
-  }
-  console.log(result);
-};
-
-const updateDisplay = (number) => {
-  display.innerText = number;
 };
 
 const handleClearClick = (event) => {
-  number = "";
+  firstNum = 0;
   updateDisplay(0);
 };
 
 const handlePercentageClick = (event) => {
-  number = Number(display.innerText) / 100;
-  updateDisplay(number);
+  firstNum = Number(display.innerText) / 100;
+  updateDisplay();
 };
 
 const handleZeroButtonClick = (event) => {
-  number += event.target.innerText;
-
-  console.log(parseInt(number));
-  updateDisplay(number);
+  if (operator === "") {
+    firstNum += event.target.innerText;
+  } else {
+    secondNum += event.target.innerText;
+  }
+  updateDisplay();
 };
 
-const handleEqualButtonClick = (event) => {};
+const handleEqualButtonClick = (event) => {
+  // let inputString = display.innerText;
+  // let numbers = inputString.split(/\+|\-|\x|\÷/g); //return array
+  // let operators = inputString.replace(/[0-9]|\./g, "").split("");
+  // console.log(inputString);
+  // console.log(operators);
+  // console.log(numbers);
+  // loop through the array
+  //   let divide = operators;
+};
 
 // ----- NUMBER BUTTON CLICKED ----- //
 
