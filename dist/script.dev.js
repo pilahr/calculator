@@ -8,9 +8,8 @@ var signButton = document.querySelector("#sign");
 var percentageButton = document.querySelector("#percentage");
 var equalButton = document.querySelector(".button__equal");
 var display = document.querySelector(".display-screen__result");
-var zeroButton = document.querySelector("#zero");
-var decimalButton = document.querySelector("#decimal");
-console.log(clearButton); // ----- VARIABLES ----- //
+var zeroButton = document.querySelector("#zero"); // const decimalButton = document.querySelector("#decimal");
+// ----- VARIABLES ----- //
 
 var firstNum = "";
 var secondNum = "";
@@ -18,12 +17,13 @@ var operator = "";
 var result = ""; // ----- FUNCTIONS ----- //
 
 var updateDisplay = function updateDisplay() {
-  display.innerText = "".concat(firstNum, " ").concat(operator, " ").concat(secondNum);
+  display.innerText = "".concat(firstNum, " ").concat(operator, " ").concat(secondNum, " ").concat(result);
 };
 
 var handleNumberClick = function handleNumberClick(event) {
   if (operator === "") {
     firstNum += event.target.innerText;
+    console.log(firstNum);
   } else {
     secondNum += event.target.innerText;
   }
@@ -43,8 +43,12 @@ var handleClearClick = function handleClearClick(event) {
 };
 
 var handlePercentageClick = function handlePercentageClick(event) {
-  firstNum = parseFloat(display.innerText) / 100;
-  updateDisplay(firstNum);
+  result = parseFloat(display.innerText) / 100;
+  firstNum = "";
+  secondNum = "";
+  operator = "";
+  updateDisplay();
+  result = "";
 };
 
 var handleZeroButtonClick = function handleZeroButtonClick(event) {
@@ -82,7 +86,17 @@ var handleEqualButtonClick = function handleEqualButtonClick(event) {
       break;
   }
 
-  display.innerText = result;
+  display.innerText = result.toFixed(2);
+};
+
+var handleSignButtonClick = function handleSignButtonClick(event) {
+  if (firstNum.includes("-")) {
+    firstNum = Math.abs(firstNum);
+  } else {
+    firstNum = "-" + firstNum;
+  }
+
+  updateDisplay();
 }; // ----- NUMBER BUTTON CLICKED ----- //
 
 
@@ -100,4 +114,6 @@ percentageButton.addEventListener("click", handlePercentageClick); // ----- ZERO
 
 zeroButton.addEventListener("click", handleZeroButtonClick); // -----EQUAL BUTTON CLICKED -----//
 
-equalButton.addEventListener("click", handleEqualButtonClick);
+equalButton.addEventListener("click", handleEqualButtonClick); // ----- SIGN BUTTON CLICKED -----//
+
+signButton.addEventListener("click", handleSignButtonClick);

@@ -7,9 +7,8 @@ const percentageButton = document.querySelector("#percentage");
 const equalButton = document.querySelector(".button__equal");
 const display = document.querySelector(".display-screen__result");
 const zeroButton = document.querySelector("#zero");
-const decimalButton = document.querySelector("#decimal");
+// const decimalButton = document.querySelector("#decimal");
 
-console.log(clearButton);
 // ----- VARIABLES ----- //
 let firstNum = "";
 let secondNum = "";
@@ -18,12 +17,13 @@ let result = "";
 
 // ----- FUNCTIONS ----- //
 const updateDisplay = () => {
-  display.innerText = `${firstNum} ${operator} ${secondNum}`;
+  display.innerText = `${firstNum} ${operator} ${secondNum} ${result}`;
 };
 
 const handleNumberClick = (event) => {
   if (operator === "") {
     firstNum += event.target.innerText;
+    console.log(firstNum);
   } else {
     secondNum += event.target.innerText;
   }
@@ -42,8 +42,12 @@ const handleClearClick = (event) => {
 };
 
 const handlePercentageClick = (event) => {
-  firstNum = parseFloat(display.innerText) / 100;
-  updateDisplay(firstNum);
+  result = parseFloat(display.innerText) / 100;
+  firstNum = "";
+  secondNum = "";
+  operator = "";
+  updateDisplay();
+  result = "";
 };
 
 const handleZeroButtonClick = (event) => {
@@ -75,9 +79,18 @@ const handleEqualButtonClick = (event) => {
       console.log(result);
       break;
   }
-  display.innerText = result;
+  display.innerText = result.toFixed(2);
 };
 
+const handleSignButtonClick = (event) => {
+  if (firstNum.includes("-")) {
+    firstNum = Math.abs(firstNum);
+  } else {
+    firstNum = "-" + firstNum;
+  }
+
+  updateDisplay();
+};
 // ----- NUMBER BUTTON CLICKED ----- //
 numberButtons.forEach((button) => {
   button.addEventListener("click", handleNumberClick);
@@ -99,3 +112,6 @@ zeroButton.addEventListener("click", handleZeroButtonClick);
 
 // -----EQUAL BUTTON CLICKED -----//
 equalButton.addEventListener("click", handleEqualButtonClick);
+
+// ----- SIGN BUTTON CLICKED -----//
+signButton.addEventListener("click", handleSignButtonClick);
