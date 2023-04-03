@@ -9,15 +9,16 @@ const display = document.querySelector(".display-screen__result");
 const zeroButton = document.querySelector("#zero");
 const decimalButton = document.querySelector("#decimal");
 
+console.log(clearButton);
 // ----- VARIABLES ----- //
 let firstNum = "";
 let secondNum = "";
 let operator = "";
-let result = 0;
+let result = "";
 
 // ----- FUNCTIONS ----- //
 const updateDisplay = () => {
-  display.innerText = `${firstNum} ${operator} ${secondNum}`;
+  display.innerText = `${firstNum} ${operator} ${secondNum} ${result}`;
 };
 
 const handleNumberClick = (event) => {
@@ -35,13 +36,17 @@ const handleOperatorClick = (event) => {
 };
 
 const handleClearClick = (event) => {
-  firstNum = 0;
-  updateDisplay(0);
+  if (clearButton.innerText === "c") {
+    firstNum = "";
+    secondNum = "";
+    operator = "";
+  }
+  updateDisplay();
 };
 
 const handlePercentageClick = (event) => {
-  firstNum = Number(display.innerText) / 100;
-  updateDisplay();
+  firstNum = parseFloat(display.innerText) / 100;
+  updateDisplay(firstNum);
 };
 
 const handleZeroButtonClick = (event) => {
@@ -54,18 +59,29 @@ const handleZeroButtonClick = (event) => {
 };
 
 const handleEqualButtonClick = (event) => {
-  // let inputString = display.innerText;
-  // let numbers = inputString.split(/\+|\-|\x|\÷/g); //return array
-  // let operators = inputString.replace(/[0-9]|\./g, "").split("");
-  // console.log(inputString);
-  // console.log(operators);
-  // console.log(numbers);
-  // loop through the array
-  //   let divide = operators;
+  let result;
+  switch (operator) {
+    case "+":
+      result = parseFloat(firstNum) + parseFloat(secondNum);
+      console.log(result);
+      break;
+    case "-":
+      result = parseFloat(firstNum) - parseFloat(secondNum);
+      console.log(result);
+      break;
+    case "x":
+      result = parseFloat(firstNum) * parseFloat(secondNum);
+      console.log(result);
+      break;
+    case "÷":
+      result = parseFloat(firstNum) / parseFloat(secondNum);
+      console.log(result);
+      break;
+  }
+  updateDisplay(result); // not working
 };
 
 // ----- NUMBER BUTTON CLICKED ----- //
-
 numberButtons.forEach((button) => {
   button.addEventListener("click", handleNumberClick);
 });

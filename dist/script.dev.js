@@ -9,15 +9,16 @@ var percentageButton = document.querySelector("#percentage");
 var equalButton = document.querySelector(".button__equal");
 var display = document.querySelector(".display-screen__result");
 var zeroButton = document.querySelector("#zero");
-var decimalButton = document.querySelector("#decimal"); // ----- VARIABLES ----- //
+var decimalButton = document.querySelector("#decimal");
+console.log(clearButton); // ----- VARIABLES ----- //
 
 var firstNum = "";
 var secondNum = "";
 var operator = "";
-var result = 0; // ----- FUNCTIONS ----- //
+var result = ""; // ----- FUNCTIONS ----- //
 
 var updateDisplay = function updateDisplay() {
-  display.innerText = "".concat(firstNum, " ").concat(operator, " ").concat(secondNum);
+  display.innerText = "".concat(firstNum, " ").concat(operator, " ").concat(secondNum, " ").concat(result);
 };
 
 var handleNumberClick = function handleNumberClick(event) {
@@ -36,13 +37,18 @@ var handleOperatorClick = function handleOperatorClick(event) {
 };
 
 var handleClearClick = function handleClearClick(event) {
-  firstNum = 0;
-  updateDisplay(0);
+  if (clearButton.innerText === "c") {
+    firstNum = "";
+    secondNum = "";
+    operator = "";
+  }
+
+  updateDisplay();
 };
 
 var handlePercentageClick = function handlePercentageClick(event) {
-  firstNum = Number(display.innerText) / 100;
-  updateDisplay();
+  firstNum = parseFloat(display.innerText) / 100;
+  updateDisplay(firstNum);
 };
 
 var handleZeroButtonClick = function handleZeroButtonClick(event) {
@@ -55,14 +61,32 @@ var handleZeroButtonClick = function handleZeroButtonClick(event) {
   updateDisplay();
 };
 
-var handleEqualButtonClick = function handleEqualButtonClick(event) {// let inputString = display.innerText;
-  // let numbers = inputString.split(/\+|\-|\x|\÷/g); //return array
-  // let operators = inputString.replace(/[0-9]|\./g, "").split("");
-  // console.log(inputString);
-  // console.log(operators);
-  // console.log(numbers);
-  // loop through the array
-  //   let divide = operators;
+var handleEqualButtonClick = function handleEqualButtonClick(event) {
+  var result;
+
+  switch (operator) {
+    case "+":
+      result = parseFloat(firstNum) + parseFloat(secondNum);
+      console.log(result);
+      break;
+
+    case "-":
+      result = parseFloat(firstNum) - parseFloat(secondNum);
+      console.log(result);
+      break;
+
+    case "x":
+      result = parseFloat(firstNum) * parseFloat(secondNum);
+      console.log(result);
+      break;
+
+    case "÷":
+      result = parseFloat(firstNum) / parseFloat(secondNum);
+      console.log(result);
+      break;
+  }
+
+  updateDisplay(result); // not working
 }; // ----- NUMBER BUTTON CLICKED ----- //
 
 
