@@ -17,6 +17,7 @@
 }
 .display-screen__result {
   font-size: 50px;
+  height: 100px;
 }
 
 .button {

@@ -36,12 +36,10 @@ const handleOperatorClick = (event) => {
 };
 
 const handleClearClick = (event) => {
-  if (clearButton.innerText === "c") {
-    firstNum = "";
-    secondNum = "";
-    operator = "";
-  }
-  updateDisplay();
+  display.innerText = "0";
+  firstNum = "";
+  secondNum = "";
+  operator = "";
 };
 
 const handlePercentageClick = (event) => {
@@ -78,7 +76,6 @@ const handleEqualButtonClick = (event) => {
       console.log(result);
       break;
   }
-  updateDisplay(result); // not working
 };
 
 // ----- NUMBER BUTTON CLICKED ----- //
