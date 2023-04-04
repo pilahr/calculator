@@ -64,22 +64,22 @@ const handleEqualButtonClick = (event) => {
   switch (operator) {
     case "+":
       result = parseFloat(firstNum) + parseFloat(secondNum);
-      console.log(result);
+      console.log(result.toFixed(2));
       break;
     case "-":
       result = parseFloat(firstNum) - parseFloat(secondNum);
-      console.log(result);
+      console.log(result.toFixed(2));
       break;
     case "x":
       result = parseFloat(firstNum) * parseFloat(secondNum);
-      console.log(result);
+      console.log(result.toFixed(2));
       break;
     case "÷":
       result = parseFloat(firstNum) / parseFloat(secondNum);
-      console.log(result);
+      console.log(result.toFixed(2));
       break;
   }
-  display.innerText = result.toFixed(2);
+  display.innerText = result;
 };
 
 const handleSignButtonClick = (event) => {
