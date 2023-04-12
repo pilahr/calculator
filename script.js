@@ -7,7 +7,6 @@ const percentageButton = document.querySelector("#percentage");
 const equalButton = document.querySelector(".button__equal");
 const display = document.querySelector(".display-screen__result");
 const zeroButton = document.querySelector("#zero");
-// const decimalButton = document.querySelector("#decimal");
 
 // ----- VARIABLES ----- //
 let firstNum = "";
@@ -91,6 +90,7 @@ const handleSignButtonClick = (event) => {
 
   updateDisplay();
 };
+
 // ----- NUMBER BUTTON CLICKED ----- //
 numberButtons.forEach((button) => {
   button.addEventListener("click", handleNumberClick);

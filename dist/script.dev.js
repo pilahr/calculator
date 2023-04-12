@@ -8,8 +8,7 @@ var signButton = document.querySelector("#sign");
 var percentageButton = document.querySelector("#percentage");
 var equalButton = document.querySelector(".button__equal");
 var display = document.querySelector(".display-screen__result");
-var zeroButton = document.querySelector("#zero"); // const decimalButton = document.querySelector("#decimal");
-// ----- VARIABLES ----- //
+var zeroButton = document.querySelector("#zero"); // ----- VARIABLES ----- //
 
 var firstNum = "";
 var secondNum = "";
