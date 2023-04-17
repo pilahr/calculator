@@ -12,32 +12,29 @@ const zeroButton = document.querySelector("#zero");
 let firstNum = "";
 let secondNum = "";
 let operator = "";
-let result = "";
 
 // ----- FUNCTIONS ----- //
-const updateDisplay = () => {
-  display.innerText = `${firstNum} ${operator} ${secondNum} ${result}`;
-};
-
 const handleNumberClick = (event) => {
+  const clickedNum = event.target.innerText;
   if (operator === "") {
-    firstNum += event.target.innerText;
-    console.log(firstNum);
+    firstNum += clickedNum;
+    display.innerText = firstNum;
   } else {
-    secondNum += event.target.innerText;
+    secondNum += clickedNum;
+    display.innerText = secondNum;
   }
-  updateDisplay();
 };
 
 const handleOperatorClick = (event) => {
   operator = event.target.innerText;
+  display.innerText = operator;
 };
 
 const handleClearClick = (event) => {
-  display.innerText = "0";
   firstNum = "";
   secondNum = "";
   operator = "";
+  display.innerText = "0";
 };
 
 const handlePercentageClick = (event) => {
@@ -45,17 +42,18 @@ const handlePercentageClick = (event) => {
   firstNum = "";
   secondNum = "";
   operator = "";
-  updateDisplay();
+  display.innerText = result;
   result = "";
 };
 
 const handleZeroButtonClick = (event) => {
   if (operator === "") {
     firstNum += event.target.innerText;
+    display.innerText = firstNum;
   } else {
     secondNum += event.target.innerText;
+    display.innerText = secondNum;
   }
-  updateDisplay();
 };
 
 const handleEqualButtonClick = (event) => {
@@ -63,32 +61,35 @@ const handleEqualButtonClick = (event) => {
   switch (operator) {
     case "+":
       result = parseFloat(firstNum) + parseFloat(secondNum);
-      console.log(result.toFixed(2));
+      result = parseFloat(result.toFixed(4));
       break;
     case "-":
       result = parseFloat(firstNum) - parseFloat(secondNum);
-      console.log(result.toFixed(2));
+      result = parseFloat(result.toFixed(4));
       break;
     case "x":
       result = parseFloat(firstNum) * parseFloat(secondNum);
-      console.log(result.toFixed(2));
+      result = parseFloat(result.toFixed(4));
       break;
     case "÷":
       result = parseFloat(firstNum) / parseFloat(secondNum);
-      console.log(result.toFixed(2));
+      result = parseFloat(result.toFixed(4));
       break;
   }
   display.innerText = result;
+  firstNum = result;
+  secondNum = "";
+  operator = "";
 };
 
 const handleSignButtonClick = (event) => {
   if (firstNum.includes("-")) {
     firstNum = Math.abs(firstNum);
+    display.innerText = firstNum;
   } else {
     firstNum = "-" + firstNum;
+    display.innerText = firstNum;
   }
-
-  updateDisplay();
 };
 
 // ----- NUMBER BUTTON CLICKED ----- //

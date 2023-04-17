@@ -12,33 +12,30 @@ var zeroButton = document.querySelector("#zero"); // ----- VARIABLES ----- //
 
 var firstNum = "";
 var secondNum = "";
-var operator = "";
-var result = ""; // ----- FUNCTIONS ----- //
-
-var updateDisplay = function updateDisplay() {
-  display.innerText = "".concat(firstNum, " ").concat(operator, " ").concat(secondNum, " ").concat(result);
-};
+var operator = ""; // ----- FUNCTIONS ----- //
 
 var handleNumberClick = function handleNumberClick(event) {
-  if (operator === "") {
-    firstNum += event.target.innerText;
-    console.log(firstNum);
-  } else {
-    secondNum += event.target.innerText;
-  }
+  var clickedNum = event.target.innerText;
 
-  updateDisplay();
+  if (operator === "") {
+    firstNum += clickedNum;
+    display.innerText = firstNum;
+  } else {
+    secondNum += clickedNum;
+    display.innerText = secondNum;
+  }
 };
 
 var handleOperatorClick = function handleOperatorClick(event) {
   operator = event.target.innerText;
+  display.innerText = operator;
 };
 
 var handleClearClick = function handleClearClick(event) {
-  display.innerText = "0";
   firstNum = "";
   secondNum = "";
   operator = "";
+  display.innerText = "0";
 };
 
 var handlePercentageClick = function handlePercentageClick(event) {
@@ -46,18 +43,18 @@ var handlePercentageClick = function handlePercentageClick(event) {
   firstNum = "";
   secondNum = "";
   operator = "";
-  updateDisplay();
+  display.innerText = result;
   result = "";
 };
 
 var handleZeroButtonClick = function handleZeroButtonClick(event) {
   if (operator === "") {
     firstNum += event.target.innerText;
+    display.innerText = firstNum;
   } else {
     secondNum += event.target.innerText;
+    display.innerText = secondNum;
   }
-
-  updateDisplay();
 };
 
 var handleEqualButtonClick = function handleEqualButtonClick(event) {
@@ -66,36 +63,39 @@ var handleEqualButtonClick = function handleEqualButtonClick(event) {
   switch (operator) {
     case "+":
       result = parseFloat(firstNum) + parseFloat(secondNum);
-      console.log(result.toFixed(2));
+      result = parseFloat(result.toFixed(4));
       break;
 
     case "-":
       result = parseFloat(firstNum) - parseFloat(secondNum);
-      console.log(result.toFixed(2));
+      result = parseFloat(result.toFixed(4));
       break;
 
     case "x":
       result = parseFloat(firstNum) * parseFloat(secondNum);
-      console.log(result.toFixed(2));
+      result = parseFloat(result.toFixed(4));
       break;
 
     case "÷":
       result = parseFloat(firstNum) / parseFloat(secondNum);
-      console.log(result.toFixed(2));
+      result = parseFloat(result.toFixed(4));
       break;
   }
 
   display.innerText = result;
+  firstNum = result;
+  secondNum = "";
+  operator = "";
 };
 
 var handleSignButtonClick = function handleSignButtonClick(event) {
   if (firstNum.includes("-")) {
     firstNum = Math.abs(firstNum);
+    display.innerText = firstNum;
   } else {
     firstNum = "-" + firstNum;
+    display.innerText = firstNum;
   }
-
-  updateDisplay();
 }; // ----- NUMBER BUTTON CLICKED ----- //
 
 
